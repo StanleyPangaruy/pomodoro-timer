@@ -46,6 +46,9 @@ class pomodoroTimer:
         self.resetButton = ttk.Button(self.gridLayout, text="Reset", command=self.resetClock)
         self.resetButton.grid(row=0, column=2)
 
+        self.pomodoroCounterLabel = ttk.Label(self.gridLayout, text="Pomodoros: 0", font=("Ubuntu", 16))
+        self.pomodoroCounterLabel.grid(row=1, column=0, columnspan=3)
+
         self.root.mainloop()
 
     def startTimerThread(self):
