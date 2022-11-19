@@ -65,13 +65,14 @@ class pomodoroTimer:
         timerId = self.tabs.index(self.tabs.select()) + 1
 
         if timerId == 1:
-            fullSecond = 60*25
-            while fullSecond > 0 and not self.stopped:
-                minutes, seconds =  divmod(fullSecond, 60)
+            fullSeconds = 60 * 25
+            fullSeconds = 5
+            while fullSeconds > 0 and not self.stopped:
+                minutes, seconds =  divmod(fullSeconds, 60)
                 self.pomodoroTimerLabel.config(text=f"{minutes:02d}:{seconds:02d}")
                 self.root.update()
                 time.sleep(1)
-                fullSecond -= 1
+                fullSeconds -= 1
             if not self.stopped or self.skipped:
                 self.pomodoros += 1
                 self.pomodoroCounterLabel.config(text=f"Pomodoros: {self.pomodoros}")
@@ -82,25 +83,26 @@ class pomodoroTimer:
                 self.startTimer()
 
         elif timerId == 2:
-            fullSecond = 60*5
-            while fullSecond > 0 and not self.stopped:
-                minutes, seconds =  divmod(fullSecond, 60)
+            fullSeconds = 60 * 5
+            fullSeconds = 5
+            while fullSeconds > 0 and not self.stopped:
+                minutes, seconds =  divmod(fullSeconds, 60)
                 self.shortBreakTimerLabel.config(text=f"{minutes:02d}:{seconds:02d}")
                 self.root.update()
                 time.sleep(1)
-                fullSecond -= 1
+                fullSeconds -= 1
             if not self.stopped or self.skipped:
                 self.tabs.select(0)
                 self.startTimer()
 
         elif timerId == 3:
-            fullSecond = 60*15
-            while fullSecond > 0 and not self.stopped:
-                minutes, seconds =  divmod(fullSecond, 60)
+            fullSeconds = 60 * 15
+            while fullSeconds > 0 and not self.stopped:
+                minutes, seconds =  divmod(fullSeconds, 60)
                 self.longBreakTimerLabel.config(text=f"{minutes:02d}:{seconds:02d}")
                 self.root.update()
                 time.sleep(1)
-                fullSecond -= 1
+                fullSeconds -= 1
             if not self.stopped or self.skipped:
                 self.tabs.select(0)
                 self.startTimer()
@@ -108,7 +110,14 @@ class pomodoroTimer:
             print("Invalid timer id")
 
     def resetClock(self):
-        pass
+        self.stopped = True
+        self.skipped = False
+        self.pomodoros = 0
+        self.pomodoroTimerLabel.config(text="25:00")
+        self.shortBreakTimerLabel.config(text="05:00")
+        self.longBreakTimerLabel.config(text="15:00")
+        self.pomodoroCounterLabel.config(text="Pomodoros: 0")
+
 
     def skipClock(self):
         pass
