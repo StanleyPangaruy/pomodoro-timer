@@ -52,12 +52,15 @@ class pomodoroTimer:
         self.pomodoros = 0
         self.skipped = False
         self.stopped = False
+        self.running = False
 
         self.root.mainloop()
 
     def startTimerThread(self):
-        t = threading.Thread(target=self.startTimer)
-        t.start()
+        if not self.running:       
+            t = threading.Thread(target=self.startTimer)
+            t.start()
+            self.running = True
 
     def startTimer(self):
         self.stopped = False
@@ -117,10 +120,20 @@ class pomodoroTimer:
         self.shortBreakTimerLabel.config(text="05:00")
         self.longBreakTimerLabel.config(text="15:00")
         self.pomodoroCounterLabel.config(text="Pomodoros: 0")
+        self.running = False
 
 
     def skipClock(self):
-        pass
+        currentTab = self.tabs.index(self.tabs.select())
+        if currentTab == 0:
+            self.pomodoroTimerLabel.config(text="25:00")
+        elif currentTab == 1:
+            self.shortBreakTimerLabel.config(text="05:00")
+        elif currentTab == 2:
+            self.longBreakTimerLabel.config(text="15:00")
+        
+        self.stopped = True
+        self.skipped = True
 
 pomodoroTimer()
 
