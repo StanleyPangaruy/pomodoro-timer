@@ -21,6 +21,15 @@ class pomodoroTimer:
         self.tab2 = ttk.Frame(self.tabs, width=600, height=100)
         self.tab3 = ttk.Frame(self.tabs, width=600, height=100)
 
+        self.pomodoroTimerLabel = ttk.Label(self.tab1, text="25:00", font=("Ubuntu", 48))
+        self.pomodoroTimerLabel.pack(pady=20)
+
+        self.shortBreakTimerLabel = ttk.Label(self.tab2, text="5:00", font=("Ubuntu", 48))
+        self.shortBreakTimerLabel.pack(pady=20)
+
+        self.longBreakTimerLabel = ttk.Label(self.tab3, text="15:00", font=("Ubuntu", 48))
+        self.longBreakTimerLabel.pack(pady=20)
+
         self.tabs.add(self.tab1, text="Pomodoro")
         self.tabs.add(self.tab2, text="Short Break")
         self.tabs.add(self.tab3, text="Long Break")
