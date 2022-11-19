@@ -69,7 +69,6 @@ class pomodoroTimer:
 
         if timerId == 1:
             fullSeconds = 60 * 25
-            fullSeconds = 5
             while fullSeconds > 0 and not self.stopped:
                 minutes, seconds =  divmod(fullSeconds, 60)
                 self.pomodoroTimerLabel.config(text=f"{minutes:02d}:{seconds:02d}")
@@ -87,7 +86,6 @@ class pomodoroTimer:
 
         elif timerId == 2:
             fullSeconds = 60 * 5
-            fullSeconds = 5
             while fullSeconds > 0 and not self.stopped:
                 minutes, seconds =  divmod(fullSeconds, 60)
                 self.shortBreakTimerLabel.config(text=f"{minutes:02d}:{seconds:02d}")
@@ -131,7 +129,7 @@ class pomodoroTimer:
             self.shortBreakTimerLabel.config(text="05:00")
         elif currentTab == 2:
             self.longBreakTimerLabel.config(text="15:00")
-        
+
         self.stopped = True
         self.skipped = True
 
